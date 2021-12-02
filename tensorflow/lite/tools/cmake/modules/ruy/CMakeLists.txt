@@ -28,13 +28,19 @@ if(NOT RUY_SOURCE_DIR)
 endif()
 
 file(GLOB RUY_SOURCES "${RUY_SOURCE_DIR}/ruy/*.*")
-list(FILTER RUY_SOURCES INCLUDE REGEX ".*\\.(c|cc|h)$")
-list(FILTER RUY_SOURCES EXCLUDE REGEX ".*(test)\\.(c|cc|h)$")
+set(RUY_HEADERS ${RUY_SOURCES})
+
+list(FILTER RUY_SOURCES INCLUDE REGEX ".*\\.(c|cc)$")
+list(FILTER RUY_SOURCES EXCLUDE REGEX ".*(test)\\.(c|cc)$")
 list(FILTER RUY_SOURCES EXCLUDE REGEX ".*/(benchmark|example|test_.*)\.cc$")
 list(FILTER RUY_SOURCES EXCLUDE REGEX ".*/gtest_wrapper\\.h$")
 
-set_source_files_properties(${RUY_SOURCES}  PROPERTIES LANGUAGE CXX)
+set_source_files_properties(${RUY_SOURCES} PROPERTIES LANGUAGE CXX)
 
-add_library(ruy ${RUY_SOURCES})
+list(FILTER RUY_HEADERS INCLUDE REGEX ".*\\.h$")
+list(FILTER RUY_HEADERS EXCLUDE REGEX ".*(test)\\.h$")
+list(FILTER RUY_HEADERS EXCLUDE REGEX ".*/gtest_wrapper\\.h$")
+
+add_library(ruy ${RUY_SOURCES} ${RUY_HEADERS})
 target_include_directories(ruy PUBLIC "${RUY_SOURCE_DIR}")
 
