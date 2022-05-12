@@ -35,6 +35,8 @@ if(NOT flatbuffers_POPULATED)
 endif()
 
 option(FLATBUFFERS_BUILD_TESTS OFF)
+option(FLATBUFFERS_BUILD_FLATC OFF)
+
 # Required for Windows, since it has macros called min & max which
 # clashes with std::min
 add_definitions(-DNOMINMAX=1)
