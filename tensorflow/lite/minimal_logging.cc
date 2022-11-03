@@ -21,6 +21,8 @@ namespace tflite {
 namespace logging_internal {
 
 void MinimalLogger::Log(LogSeverity severity, const char* format, ...) {
+  if(severity == LogSeverity::TFLITE_LOG_INFO) return;
+
   va_list args;
   va_start(args, format);
   LogFormatted(severity, format, args);
