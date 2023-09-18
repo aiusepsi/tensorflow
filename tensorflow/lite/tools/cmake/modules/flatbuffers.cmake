@@ -35,6 +35,8 @@ if(NOT flatbuffers_POPULATED)
 endif()
 
 option(FLATBUFFERS_BUILD_TESTS OFF)
+option(FLATBUFFERS_BUILD_FLATC OFF)
+
 # Required for Windows, since it has macros called min & max which
 # clashes with std::min
 add_definitions(-DNOMINMAX=1)
@@ -60,7 +62,7 @@ endif()
 
 # In case of a standalone (native) build of flatc for unit test cross-compilation
 # purposes the FLATC_INSTALL_PREFIX is already in cache and is just used in this module.
-# In case of standard flatbuffers build (as a dependency) the variable needs to be set. 
+# In case of standard flatbuffers build (as a dependency) the variable needs to be set.
 if(NOT DEFINED FLATC_INSTALL_PREFIX)
   set(FLATC_INSTALL_PREFIX <INSTALL_DIR> CACHE PATH "Flatc installation directory")
 endif()
