@@ -585,6 +585,8 @@ target_link_libraries(tensorflow-lite
     ${TFLITE_TARGET_DEPENDENCIES}
 )
 
+target_compile_definitions(tensorflow-lite PRIVATE NEON2SSE_DISABLE_PERFORMANCE_WARNING)
+
 if (NOT BUILD_SHARED_LIBS)
   list(APPEND TFLITE_TARGET_PUBLIC_OPTIONS "-DTFL_STATIC_LIBRARY_BUILD")
 endif()
