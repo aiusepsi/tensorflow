@@ -586,7 +586,7 @@ target_link_libraries(tensorflow-lite
 )
 
 target_compile_definitions(tensorflow-lite PRIVATE NEON2SSE_DISABLE_PERFORMANCE_WARNING)
-target_compile_options(tensorflow-lite PRIVATE "-Wno-ignored-attributes")
+target_compile_options(tensorflow-lite PRIVATE "-Wno-ignored-attributes" "-Wno-deprecated-declarations")
 
 if (NOT BUILD_SHARED_LIBS)
   list(APPEND TFLITE_TARGET_PUBLIC_OPTIONS "-DTFL_STATIC_LIBRARY_BUILD")
